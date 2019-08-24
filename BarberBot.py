@@ -349,7 +349,7 @@ def ignore(call):
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://cofe-testbot-1996.herokuapp.com/' + TOKEN)
+    bot.set_webhook(url='https://barber-testbot-1996.herokuapp.com/' + TOKEN)
     return "!", 200
 
 
