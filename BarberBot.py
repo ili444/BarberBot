@@ -347,6 +347,12 @@ def previous_month(call):
 def ignore(call):
     bot.answer_callback_query(call.id, text="")
 
+
+@server.route('/' + TOKEN, methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "OK", 200
+    
 @server.route("/")
 def webhook():
     bot.remove_webhook()
