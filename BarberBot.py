@@ -11,7 +11,7 @@ import json
 from db_barber import Db_users
 
 
-bot = TeleBot('567060155:AAEA9vbmcu-Z99fUvWQI_02X1mgqJutvHuE')
+bot = TeleBot(token)
 
 apihelper.proxy = {'https': 'socks5://104.237.253.196:1080'}
 
