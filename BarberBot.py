@@ -2,18 +2,20 @@
 # coding: utf-8
 import telebot
 from telebot import types
-from telebot import apihelper
 from telebot import TeleBot
 from datetime import datetime
 import calendar
 import dbworker
 import json
+import os
 from db_barber import Db_users
+from flask import Flask, request
 
 
-bot = TeleBot(token)
+TOKEN = os.environ['token2']
+bot = telebot.TeleBot(TOKEN)
+server = Flask(__name__)
 
-apihelper.proxy = {'https': 'socks5://104.237.253.196:1080'}
 
 
 
@@ -344,7 +346,12 @@ def previous_month(call):
 def ignore(call):
     bot.answer_callback_query(call.id, text="")
 
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://cofe-testbot-1996.herokuapp.com/' + TOKEN)
+    return "!", 200
 
-if __name__ == '__main__':
-    bot.polling(none_stop=True, interval=0)
 
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
