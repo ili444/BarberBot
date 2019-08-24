@@ -13,7 +13,7 @@ from db_barber import Db_users
 from flask import Flask, request
 
 
-TOKEN = os.environ['token2']
+TOKEN = os.environ['token']
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 basket = 'basket.py'
